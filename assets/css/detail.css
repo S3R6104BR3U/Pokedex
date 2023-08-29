@@ -1,12 +1,4 @@
 
-.pokemon {
-    display: flex;
-    flex-direction: column ;
-    margin: .5rem;
-    padding: 1rem;
-    border-radius: 1rem;
-}
-
 .pokemon .number {
     color: #000;
     opacity: 0.3;
@@ -59,13 +51,4 @@
     padding: 1rem;
 }
 
-.pagination button {
-    padding: .25rem .5rem;
-    margin: .25rem 0;
-    font-size: .625rem;
-    color: #fff;
-    background-color: #8c79db;
-    border: none;
-    border-radius: 1rem;
-}
 
