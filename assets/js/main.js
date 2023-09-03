@@ -19,7 +19,13 @@ function convertPokemonToLi(pokemon) {
         <ol class="types">
             ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
         </ol>
-        <button class="btn" type="button" onclick="onDetail('${pokemon.name}')"}>
+        
+        <!--<button class="btn" type="button" onclick="onDetail('${pokemon.name}')"}>
+                Detail
+        </button> -->
+
+
+        <button class="btn" type="button" onclick="openDetails('${pokemon.name}');"}>
                 Detail
         </button>
 
