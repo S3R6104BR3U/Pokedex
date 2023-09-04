@@ -3,32 +3,28 @@ function openModal() {
 	modal.style.display = 'block'
 }
 
-function convertPokemonTypesToLi(pokemonTypes) {
-	return pokemonTypes.map((typeSlot) => `<li class="type liDetail">${typeSlot.type.name}</li>`)
-}
-
-function convertPokemonAbilitiesToLi(pokemonAbilities) {
-	return pokemonAbilities.map((nameAbility) => `<li class="ability liDetail">${nameAbility.ability.name}</li>`)
-}
-
 function convertPokemonDetailToHtml(pokemon) {
 	return `
-		<div class="barTitle">
-				<span class="number-card">#${pokemon.id}</span>
-				<span>${pokemon.name}</span>
-				<button id="btnCloserModal" onclick="closerModal()">X</button>
+		<div class="card-modal ${pokemon.type}">
+			<div class="barTitle">
+					<span class="number-card">#${pokemon.number}</span>
+					<span class="name-pokemon">${pokemon.name}</span>
+					<button id="btnCloserModal" onclick="closerModal()">X</button>
 			</div>
-			<p><img src="${pokemon.sprites.other.dream_world.front_default}"></p>
+
+			<p><img src="${pokemon.photo}"></p>
+				
 			<div class="detail-card">
-					<span>Tipo</span>
+					<span>Type</span>
 					<ol class="types">
-						${convertPokemonTypesToLi(pokemon.types).join('')}
+						${pokemon.types.map((type) => `<li class="liDetail ${type}">${type}</li>`).join("")}
 					</ol>
-					<span>Abilidades</span>
+					<span>Abilities</span>
 					<ol class="abilities">
-						${convertPokemonAbilitiesToLi(pokemon.abilities).join('')}
+						${pokemon.abilities.map((ability) => `<li class="liDetail ability">${ability}</li>`).join("")}
 					</ol>
 			</div>
+		</div>
 	`
 }
 
@@ -40,24 +36,22 @@ function closerModal() {
 let box = document.getElementById('box')
 
 
-
 function openDetails(pokemonName) {
 	const url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
 	fetch(url)
 		.then((response) => response.json())
+		.then(convertPokeApiDetailToPokemon)
+
 		.then((pokemon) => {
-			console.log(pokemon)
-			console.log(convertPokemonDetailToHtml(pokemon))
+			//console.log(pokemon)
+			//console.log(convertPokemonDetailToHtml(pokemon))
 			box.innerHTML = convertPokemonDetailToHtml(pokemon)
 			openModal()
 		})
 
 
 
+
 }
 
 let modal = document.getElementById('modal')
-
-
-
-	
